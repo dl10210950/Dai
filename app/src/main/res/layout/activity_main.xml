@@ -7,16 +7,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.duanlian.daimeng.ui.activity.MainActivity">
-
-
+<FrameLayout
+    android:id="@+id/main_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/main_space"
+   />
+    <TextView
+    android:id="@+id/main_space"
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:layout_above="@+id/bottom_linear"
+    android:background="#11231f1f"/>
     <LinearLayout
+        android:id="@+id/bottom_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#77ebebeb">
 
         <RelativeLayout
-            android:id="@+id/main_relative_music"
             style="@style/MainBottomRelativeLayout"
             >
 
@@ -72,7 +82,7 @@
                 app:btn_fill_color="#FF0066"
                 app:enable_flashing="true"
                 app:shine_size="30dp"
-                app:siShape="@mipmap/ic_launcher"/>
+                app:siShape="@mipmap/main_bottom_book"/>
 
             <TextView
                 android:id="@+id/main_book_tv"
@@ -94,7 +104,7 @@
                 app:btn_fill_color="#FF0066"
                 app:enable_flashing="true"
                 app:shine_size="30dp"
-                app:siShape="@mipmap/ic_launcher"/>
+                app:siShape="@mipmap/main_bottom_news"/>
 
             <TextView
                 android:id="@+id/main_news_tv"
