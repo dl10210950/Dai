@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.duanlian.daimeng.ui.activity.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#77ebebeb">
+
+        <RelativeLayout
+            android:id="@+id/main_relative_music"
+            style="@style/MainBottomRelativeLayout"
+            >
+
+            <com.duanlian.daimeng.ui.view.shinebutton.ShineButton
+                android:id="@+id/main_shine_btn_music"
+                style="@style/MainShineButton"
+                app:big_shine_color="#FF0066"
+                app:btn_color="#868686"
+                app:btn_fill_color="#FF0066"
+                app:enable_flashing="true"
+                app:shine_size="30dp"
+                app:siShape="@mipmap/main_bottom_music"/>
+
+            <TextView
+                android:id="@+id/main_music_tv"
+                style="@style/MainTextView"
+                android:layout_below="@+id/main_shine_btn_music"
+                android:text="音 乐"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_relative_video"
+            style="@style/MainBottomRelativeLayout">
+
+            <com.duanlian.daimeng.ui.view.shinebutton.ShineButton
+                android:id="@+id/main_shine_btn_video"
+                style="@style/MainShineButton"
+                app:big_shine_color="#FF0066"
+                app:btn_color="#868686"
+                app:btn_fill_color="#FF0066"
+                app:enable_flashing="true"
+                app:shine_size="30dp"
+                app:siShape="@mipmap/main_bottom_video"/>
+
+            <TextView
+                android:id="@+id/main_video_tv"
+                style="@style/MainTextView"
+                android:layout_below="@+id/main_shine_btn_video"
+                android:text="视 频"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_relative_book"
+            style="@style/MainBottomRelativeLayout">
+
+            <com.duanlian.daimeng.ui.view.shinebutton.ShineButton
+                android:id="@+id/main_shine_btn_book"
+                style="@style/MainShineButton"
+                app:big_shine_color="#FF0066"
+                app:btn_color="#868686"
+                app:btn_fill_color="#FF0066"
+                app:enable_flashing="true"
+                app:shine_size="30dp"
+                app:siShape="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/main_book_tv"
+                style="@style/MainTextView"
+                android:layout_below="@+id/main_shine_btn_book"
+                android:text="书 籍"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_relative_news"
+            style="@style/MainBottomRelativeLayout">
+
+            <com.duanlian.daimeng.ui.view.shinebutton.ShineButton
+                android:id="@+id/main_shine_btn_news"
+                style="@style/MainShineButton"
+                app:big_shine_color="#FF0066"
+                app:btn_color="#868686"
+                app:btn_fill_color="#FF0066"
+                app:enable_flashing="true"
+                app:shine_size="30dp"
+                app:siShape="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/main_news_tv"
+                style="@style/MainTextView"
+                android:layout_below="@+id/main_shine_btn_news"
+                android:text="新 闻"
+                />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
