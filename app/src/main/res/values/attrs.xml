@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--爆炸button-->
     <declare-styleable name="ShineButton">
         <attr name="btn_color" format="color" />
         <attr name="btn_fill_color" format="color" />
@@ -17,5 +18,17 @@
     </declare-styleable>
     <declare-styleable name="PorterImageView">
         <attr name="siShape" format="integer|reference" />
+    </declare-styleable>
+    <!--圆形图片的-->
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    <!--悬浮layout-->
+    <declare-styleable name="StickNavLayout">
+        <!--默认是否悬停tab-->
+        <attr name="isStickNav" format="boolean" />
+        <!--距离悬浮的位置-->
+        <attr name="stickOffset" format="dimension" />
     </declare-styleable>
 </resources>

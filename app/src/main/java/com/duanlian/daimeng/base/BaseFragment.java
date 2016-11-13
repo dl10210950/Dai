@@ -45,7 +45,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     /**
      * 初始化数据
      */
-    private void initData() {}
+    public void initData() {}
 
     @Override
     public void showProgress(boolean flag, String message) {

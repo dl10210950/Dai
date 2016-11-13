@@ -31,4 +31,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     //解析数据
     compile files('libs/classes.jar')
+    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.nineoldandroids:library:2.4.0'
 }

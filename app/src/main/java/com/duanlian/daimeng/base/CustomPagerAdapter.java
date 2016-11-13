@@ -11,7 +11,7 @@ import java.util.List;
  *自定义FragmentPagerAdapter
  */
 public class CustomPagerAdapter extends FragmentPagerAdapter {
-    List<Fragment> mFragments;
+    List<BaseFragment> mFragments;
     List<String> mTitles;
 
     public CustomPagerAdapter(FragmentManager fm) {
@@ -23,7 +23,7 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
      *
      * @param fragments
      */
-    public void setPagers(List<Fragment> fragments) {
+    public void setPagers(List<BaseFragment> fragments) {
         mFragments = fragments;
     }
 
@@ -32,9 +32,9 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
      *
      * @param fragment
      */
-    public void addPager(Fragment fragment) {
+    public void addPager(BaseFragment fragment) {
         if (mFragments == null) {
-            ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+            ArrayList<BaseFragment> fragments = new ArrayList<BaseFragment>();
             fragments.add(fragment);
             setPagers(fragments);
         } else {
@@ -47,7 +47,7 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
      *
      * @param fragments
      */
-    public void addPagers(List<Fragment> fragments) {
+    public void addPagers(List<BaseFragment> fragments) {
         if (mFragments == null) {
             setPagers(fragments);
         } else {
