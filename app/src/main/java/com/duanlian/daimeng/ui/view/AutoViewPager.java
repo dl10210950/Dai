@@ -33,7 +33,7 @@ public class AutoViewPager extends RelativeLayout implements ViewPager.OnPageCha
     private static final int UNSELECTED_DOT_COLOR = Color.WHITE;
     private static final int SELECTED_DOT_COLOR = Color.RED;
     //指示器的圆点大小
-    private static final int DEFAULT_DOT_SIZE = 30;
+    private static final int DEFAULT_DOT_SIZE = 20;
     //页面切换时间
     private static final int SCROLL_DURATION = 800;
     //页面展示时间
@@ -94,8 +94,11 @@ public class AutoViewPager extends RelativeLayout implements ViewPager.OnPageCha
         ll_dots = new LinearLayout(context);
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(ALIGN_PARENT_BOTTOM);
-        params.addRule(CENTER_HORIZONTAL);
-        params.setMargins(10, 10, 10, 10);
+//        params.addRule(CENTER_HORIZONTAL);
+        //设置小圆点的位置
+        params.addRule(ALIGN_PARENT_RIGHT);
+        //设置小圆点的margins
+        params.setMargins(10, 10, 50, 20);
         addView(ll_dots, params);
     }
 
@@ -166,7 +169,8 @@ public class AutoViewPager extends RelativeLayout implements ViewPager.OnPageCha
     public void addContent(View view) {
         if (params == null) {
             params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(5, 5, 5, 5);
+            //设置原点之间的距离
+            params.setMargins(10, 10, 10, 10);
         }
         Dot dot = new Dot(getContext());
         dots.add(dot);
