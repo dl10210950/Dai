@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.duanlian.daimeng.base.BaseApplication;
+
 /**
  * 尺寸相关工具类
  * 1.dpi转px
@@ -81,6 +83,9 @@ public class SizeUtils {
     public static int getTopBarHeight(Activity activity) {
         return activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
     }
-
+    public static int dp2px(float dipValue) {
+        final float scale = BaseApplication.getInstance().getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
 
 }

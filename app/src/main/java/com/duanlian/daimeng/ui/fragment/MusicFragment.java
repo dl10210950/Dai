@@ -1,6 +1,5 @@
 package com.duanlian.daimeng.ui.fragment;
 
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -12,13 +11,15 @@ import com.duanlian.daimeng.adapter.MusicFragPagerAdapter;
 import com.duanlian.daimeng.base.BaseFragment;
 import com.duanlian.daimeng.ui.fragment.music.LocalMusicFragment;
 import com.duanlian.daimeng.ui.fragment.music.NetMusicFragment;
+import com.duanlian.daimeng.ui.view.AutoViewPager;
+import com.duanlian.daimeng.ui.view.CircleImageView;
+import com.duanlian.daimeng.ui.view.IosBottomDialog;
 import com.duanlian.daimeng.ui.view.stickylayout.StickyNavLayout;
+import com.duanlian.daimeng.utils.CommonUtils;
 import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.y;
 
 /**
  * music页面
@@ -33,7 +34,8 @@ public class MusicFragment extends BaseFragment {
     private List<BaseFragment> mFragList;
     private List<String> titleList;
     private RelativeLayout mRelative;
-    private boolean isSticky=false;
+    private AutoViewPager mAutoViewPager;
+    private CircleImageView alwaysShowHead;
 
     public static BaseFragment newInstance() {
         MusicFragment fragment = new MusicFragment();
@@ -48,6 +50,8 @@ public class MusicFragment extends BaseFragment {
         mTab = (TabLayout) view.findViewById(R.id.id_stickynavlayout_indicator);
         stickyNavLayout = (StickyNavLayout) view.findViewById(R.id.stick);
         mRelative = (RelativeLayout) view.findViewById(R.id.common_relative);
+        mAutoViewPager = (AutoViewPager) view.findViewById(R.id.music_viewpager);
+        alwaysShowHead = (CircleImageView) view.findViewById(R.id.common_head_show);
         mFragList = new ArrayList<>();
         titleList = new ArrayList<>();
         mFragList.add(LocalMusicFragment.newInstance());
@@ -61,34 +65,67 @@ public class MusicFragment extends BaseFragment {
         mPagerAdapter.setTitles(titleList);
         mPagerAdapter.setPagers(mFragList);
         mViewPager.setAdapter(mPagerAdapter);
-
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.main_bottom_book,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.ic_launcher,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.main_bottom_music,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.main_bottom_video,getBaseActivity()));
+        mAutoViewPager.startScroll();
+        //设置顶部导航栏隐藏
         ViewHelper.setAlpha(mRelative, 0f);
-        stickyNavLayout.setOnStickStateChangeListener(onStickStateChangeListener);
+        setViewListener();
         return view;
     }
 
-    @Override
-    public void initData() {
-    }
-    private StickyNavLayout.onStickStateChangeListener onStickStateChangeListener = new StickyNavLayout.onStickStateChangeListener() {
-        @Override
-        public void isStick(boolean isStick) {
+    private void setViewListener() {
+        //一直显示的头像的监听
+        alwaysShowHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IosBottomDialog.Builder builder = new IosBottomDialog.Builder(getBaseActivity());
+                builder.setTitle("我是标题", R.color.blueviolet)
+                        .addOption("操作1", R.color.black, new IosBottomDialog.OnOptionClickListener() {
+                            @Override
+                            public void onOptionClick() {
+                                showToast("操作一");
+                            }
+                        })
+                        .addOption("操作2", R.color.black, new IosBottomDialog.OnOptionClickListener() {
+                            @Override
+                            public void onOptionClick() {
+                                showToast("操作二");
+                            }
+                        })
+                        .create()
+                        .show();
+            }
+        });
+        //悬浮条的监听
+        stickyNavLayout.setOnStickStateChangeListener(new StickyNavLayout.onStickStateChangeListener() {
+            @Override
+            public void isStick(boolean isStick) {
                 if (isStick) {
-
 //                    Toast.makeText(SimpleStickActivity.this, "本宝宝悬浮了", Toast.LENGTH_LONG).show();
                 } else {
 //                    Toast.makeText(SimpleStickActivity.this, "本宝宝又不悬浮了", Toast.LENGTH_LONG).show();
                 }
             }
 
-        @Override
-        public void scrollPercent(float percent) {
-            if (percent != 0) {
-                mRelative.setVisibility(View.VISIBLE);
-            } else {
-                mRelative.setVisibility(View.GONE);
+            @Override
+            public void scrollPercent(float percent) {
+                if (percent != 0) {
+                    mRelative.setVisibility(View.VISIBLE);
+                } else {
+                    mRelative.setVisibility(View.GONE);
+                }
+                ViewHelper.setAlpha(mRelative, percent);
             }
-            ViewHelper.setAlpha(mRelative, percent);
-        }
-    };
+        });
+    }
+
+    @Override
+    public void initData() {
+    }
+
+
+
 }

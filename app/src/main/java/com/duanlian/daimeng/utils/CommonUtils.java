@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
 import com.duanlian.daimeng.base.BaseApplication;
 import com.google.gson.Gson;
@@ -262,18 +263,17 @@ public class CommonUtils {
 
     /**
      * 获取联系人电话
+     *
      * @param cursor
      * @return
      */
-    private String getContactPhone(Context context, Cursor cursor)
-    {
+    public String getContactPhone(Context context, Cursor cursor) {
 
         int phoneColumn = cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER);
         int phoneNum = cursor.getInt(phoneColumn);
-        String phoneResult="";
+        String phoneResult = "";
         //System.out.print(phoneNum);
-        if (phoneNum > 0)
-        {
+        if (phoneNum > 0) {
             // 获得联系人的ID号
             int idColumn = cursor.getColumnIndex(ContactsContract.Contacts._ID);
             String contactId = cursor.getString(idColumn);
@@ -281,29 +281,25 @@ public class CommonUtils {
             Cursor phones = context.getContentResolver().query(
                     ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null,
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID+ " = " + contactId,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId,
                     null, null);
             //int phoneCount = phones.getCount();
             //allPhoneNum = new ArrayList<String>(phoneCount);
-            if (phones.moveToFirst())
-            {
+            if (phones.moveToFirst()) {
                 // 遍历所有的电话号码
-                for (;!phones.isAfterLast();phones.moveToNext())
-                {
+                for (; !phones.isAfterLast(); phones.moveToNext()) {
                     int index = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                     int typeindex = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE);
                     int phone_type = phones.getInt(typeindex);
                     String phoneNumber = phones.getString(index);
-                    switch(phone_type)
-                    {
+                    switch (phone_type) {
                         case 2:
-                            phoneResult=phoneNumber;
+                            phoneResult = phoneNumber;
                             break;
                     }
                     //allPhoneNum.add(phoneNumber);
                 }
-                if (!phones.isClosed())
-                {
+                if (!phones.isClosed()) {
                     phones.close();
                 }
             }
@@ -311,4 +307,9 @@ public class CommonUtils {
         return phoneResult;
     }
 
+    public static ImageView getImageView(int resId, Context context) {
+        ImageView image = new ImageView(context);
+        image.setImageResource(resId);
+        return image;
+    }
 }
