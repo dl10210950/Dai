@@ -31,6 +31,7 @@ public class SplashActivity extends BaseActivity {
             public void onClick(View v) {
                 count = 1;
                 startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                overridePendingTransition(R.anim.activity_in_anim,R.anim.headline_out);
                 finish();
             }
         });
@@ -44,6 +45,7 @@ public class SplashActivity extends BaseActivity {
             public void onFinishCount() {
                 if (count == 0) {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    overridePendingTransition(R.anim.activity_in_anim,R.anim.activity_out_anim);
                     finish();
                 } else {
                     finish();
