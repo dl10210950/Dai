@@ -1,5 +1,6 @@
 package com.duanlian.daimeng.ui.fragment;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -82,7 +83,7 @@ public class MusicFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 IosBottomDialog.Builder builder = new IosBottomDialog.Builder(getBaseActivity());
-                builder.setTitle("我是标题", R.color.blueviolet)
+                builder.setTitle("我是标题", Color.BLACK)
                         .addOption("操作1", R.color.black, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {

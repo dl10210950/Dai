@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
+import com.duanlian.daimeng.R;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -28,8 +30,8 @@ import java.util.TimerTask;
 public class AutoViewPager extends RelativeLayout implements ViewPager.OnPageChangeListener, View.OnTouchListener {
 
     //指示器选中时和未选中时的颜色
-    private static final int UNSELECTED_DOT_COLOR = Color.LTGRAY;
-    private static final int SELECTED_DOT_COLOR = Color.DKGRAY;
+    private static final int UNSELECTED_DOT_COLOR = Color.WHITE;
+    private static final int SELECTED_DOT_COLOR = Color.RED;
     //指示器的圆点大小
     private static final int DEFAULT_DOT_SIZE = 30;
     //页面切换时间

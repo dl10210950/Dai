@@ -175,20 +175,20 @@ public class IosBottomDialog extends Dialog {
                     //选择到底使用哪个selector文件
                     if (p.options.size() == 1) {
                         if (p.title.isEmpty()) {
-                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option13);
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option13_selector);
                         } else {
-                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option3);
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option3_selector);
                         }
                     } else if (i == 0) {
                         if (p.title.isEmpty()) {
-                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option1);
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option1_selector);
                         } else {
-                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option2);
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option2_selector);
                         }
                     } else if (i < p.options.size() - 1) {
-                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option2);
+                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option2_selector);
                     } else {
-                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option3);
+                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option3_selector);
                     }
                 }
             }

@@ -22,10 +22,12 @@ import com.duanlian.daimeng.R;
 public class CountDownView extends View {
 
     private static final int BACKGROUND_COLOR = 0x50555555;
-    private static final float BORDER_WIDTH = 15f;
+    //边框宽度
+    private static final float BORDER_WIDTH = 5f;
+    //边框颜色
     private static final int BORDER_COLOR = 0xFF6ADBFE;
     private static final String TEXT = "跳过广告";
-    private static final float TEXT_SIZE = 50f;
+    private static final float TEXT_SIZE = 30f;
     private static final int TEXT_COLOR = 0xFFFFFFFF;
 
     private int backgroundColor;
