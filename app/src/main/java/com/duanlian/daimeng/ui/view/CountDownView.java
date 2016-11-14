@@ -3,6 +3,7 @@ package com.duanlian.daimeng.ui.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.CountDownTimer;
@@ -20,12 +21,12 @@ import com.duanlian.daimeng.R;
  */
 
 public class CountDownView extends View {
-
+//圆形里面的颜色
     private static final int BACKGROUND_COLOR = 0x50555555;
     //边框宽度
-    private static final float BORDER_WIDTH = 5f;
+    private static final float BORDER_WIDTH = 6f;
     //边框颜色
-    private static final int BORDER_COLOR = 0xFF6ADBFE;
+    private static final int BORDER_COLOR = Color.RED;
     private static final String TEXT = "跳过广告";
     private static final float TEXT_SIZE = 30f;
     private static final int TEXT_COLOR = 0xFFFFFFFF;

@@ -264,8 +264,11 @@ public class AutoViewPager extends RelativeLayout implements ViewPager.OnPageCha
     }
 
     public void stopScroll() {
-        timerTask.cancel();
-        timerTask = null;
+        if (timerTask != null) {
+            timerTask.cancel();
+            timerTask = null;
+        }
+
     }
 
     @Override

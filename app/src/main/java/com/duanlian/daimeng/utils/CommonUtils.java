@@ -310,6 +310,7 @@ public class CommonUtils {
     public static ImageView getImageView(int resId, Context context) {
         ImageView image = new ImageView(context);
         image.setImageResource(resId);
+        image.setScaleType(ImageView.ScaleType.FIT_XY);
         return image;
     }
 }

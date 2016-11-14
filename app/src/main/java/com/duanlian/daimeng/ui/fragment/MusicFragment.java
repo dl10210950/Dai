@@ -66,10 +66,10 @@ public class MusicFragment extends BaseFragment {
         mPagerAdapter.setTitles(titleList);
         mPagerAdapter.setPagers(mFragList);
         mViewPager.setAdapter(mPagerAdapter);
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.main_bottom_book,getBaseActivity()));
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.ic_launcher,getBaseActivity()));
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.main_bottom_music,getBaseActivity()));
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.main_bottom_video,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager1,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.veiwpager2,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager3,getBaseActivity()));
         mAutoViewPager.startScroll();
         //设置顶部导航栏隐藏
         ViewHelper.setAlpha(mRelative, 0f);
