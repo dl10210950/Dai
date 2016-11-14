@@ -69,6 +69,7 @@ public class MusicFragment extends BaseFragment {
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager,getBaseActivity()));
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager1,getBaseActivity()));
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.veiwpager2,getBaseActivity()));
+
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager3,getBaseActivity()));
         mAutoViewPager.startScroll();
         //设置顶部导航栏隐藏
