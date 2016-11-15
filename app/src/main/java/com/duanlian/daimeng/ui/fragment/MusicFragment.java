@@ -3,7 +3,12 @@ package com.duanlian.daimeng.ui.fragment;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -15,6 +20,9 @@ import com.duanlian.daimeng.ui.fragment.music.NetMusicFragment;
 import com.duanlian.daimeng.ui.view.AutoViewPager;
 import com.duanlian.daimeng.ui.view.CircleImageView;
 import com.duanlian.daimeng.ui.view.IosBottomDialog;
+import com.duanlian.daimeng.ui.view.many_searchview.SearchView;
+import com.duanlian.daimeng.ui.view.many_searchview.controller.ChangeArrowController;
+import com.duanlian.daimeng.ui.view.many_searchview.controller.DotGoPathController;
 import com.duanlian.daimeng.ui.view.stickylayout.StickyNavLayout;
 import com.duanlian.daimeng.utils.CommonUtils;
 import com.nineoldandroids.view.ViewHelper;
@@ -37,6 +45,9 @@ public class MusicFragment extends BaseFragment {
     private RelativeLayout mRelative;
     private AutoViewPager mAutoViewPager;
     private CircleImageView alwaysShowHead;
+    private ImageView hint_img;
+    private EditText mEditText;
+    private SearchView mSearchView;
 
     public static BaseFragment newInstance() {
         MusicFragment fragment = new MusicFragment();
@@ -53,6 +64,10 @@ public class MusicFragment extends BaseFragment {
         mRelative = (RelativeLayout) view.findViewById(R.id.common_relative);
         mAutoViewPager = (AutoViewPager) view.findViewById(R.id.music_viewpager);
         alwaysShowHead = (CircleImageView) view.findViewById(R.id.common_head_show);
+        hint_img = (ImageView) view.findViewById(R.id.common_edit_hint_search);
+        mEditText = (EditText) view.findViewById(R.id.common_edit);
+        mSearchView = (SearchView) view.findViewById(R.id.common_search);
+        mSearchView.setController(new ChangeArrowController());
         mFragList = new ArrayList<>();
         titleList = new ArrayList<>();
         mFragList.add(LocalMusicFragment.newInstance());
@@ -66,10 +81,10 @@ public class MusicFragment extends BaseFragment {
         mPagerAdapter.setTitles(titleList);
         mPagerAdapter.setPagers(mFragList);
         mViewPager.setAdapter(mPagerAdapter);
+        //给轮播图添加图片
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager,getBaseActivity()));
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager1,getBaseActivity()));
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.veiwpager2,getBaseActivity()));
-
         mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager3,getBaseActivity()));
         mAutoViewPager.startScroll();
         //设置顶部导航栏隐藏
@@ -120,6 +135,34 @@ public class MusicFragment extends BaseFragment {
                     mRelative.setVisibility(View.GONE);
                 }
                 ViewHelper.setAlpha(mRelative, percent);
+            }
+        });
+        //自定义搜索按钮的监听
+        mSearchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSearchView.startAnim();
+            }
+        });
+
+        mEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().isEmpty()) {
+                    hint_img.setVisibility(View.VISIBLE);
+                } else {
+                    hint_img.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }

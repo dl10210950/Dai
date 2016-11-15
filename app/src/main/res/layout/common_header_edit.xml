@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/common_relative"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:visibility="gone"
         android:background="#ffff"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingRight="15dp"
+        android:visibility="visible">
 
         <com.duanlian.daimeng.ui.view.CircleImageView
             android:id="@+id/common_head"
@@ -19,7 +19,7 @@
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/head" />
+            android:src="@mipmap/head"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,25 +29,31 @@
             android:layout_toLeftOf="@+id/daimeng"
             android:layout_toRightOf="@+id/common_head">
 
+            <ImageView
+                android:id="@+id/common_edit_hint_search"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:background="@mipmap/seach"/>
 
             <EditText
                 android:id="@+id/common_edit"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:drawableLeft="@mipmap/seach"
-                android:paddingLeft="6dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/common_header_edit_shap" />
+                android:paddingStart="15dp"
+                android:background="@drawable/common_header_edit_shap"
+                android:paddingLeft="6dp"/>
 
-            <ImageView
-                android:id="@+id/common_clean"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+            <com.duanlian.daimeng.ui.view.many_searchview.SearchView
+                android:id="@+id/common_search"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="6dp"
-                android:visibility="gone"
-                android:background="@mipmap/clean"/>
+                android:layout_marginRight="13dp"
+                />
 
 
         </RelativeLayout>
@@ -64,12 +70,13 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:background="@mipmap/icon_dai" />
+                android:background="@mipmap/icon_dai"/>
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:background="@mipmap/icon_meng" />
+                android:background="@mipmap/icon_meng"/>
 
         </LinearLayout>
 

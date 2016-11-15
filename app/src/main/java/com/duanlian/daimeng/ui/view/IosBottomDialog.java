@@ -21,7 +21,6 @@ import java.util.List;
 
 /**
  * 仿IOS风格-----从底部弹出的dialog
- * Created by wuming on 16/10/12.
  */
 
 public class IosBottomDialog extends Dialog {
