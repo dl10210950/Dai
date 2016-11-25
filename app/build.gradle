@@ -26,12 +26,14 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
     //图片加载
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     //解析数据
+    compile 'com.google.code.gson:gson:2.7'
     compile files('libs/classes.jar')
     compile 'com.android.support:recyclerview-v7:25.0.0'
     compile 'com.android.support:design:25.0.0'
     compile 'com.nineoldandroids:library:2.4.0'
+    //网络请求
+    compile 'com.zhy:okhttputils:2.6.2'
 }
