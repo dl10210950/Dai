@@ -78,8 +78,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((MyViewHolder) holder).tvSource.setText(mList.get(position).getSource());
             ((MyViewHolder) holder).tvDate.setText(mList.get(position).getPubDate());
             //item的进场动画,有bug,待解决
-//            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_bottom_in);
-//            holder.itemView.startAnimation(animation);
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_bottom_in);
+            holder.itemView.startAnimation(animation);
             if (mList.get(position).getImageurls().size() != 0) {
                 ((MyViewHolder) holder).mImageView.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(mList.get(position).getImageurls().get(0).getUrl()).into(((MyViewHolder) holder).mImageView);

@@ -40,6 +40,7 @@ public class NewsFragment extends BaseFragment {
     int allPages;//新闻里面的所有页数
     int lastVisibleItem;
     int currentPage = 1;
+    private boolean isLoading;
     List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist = new ArrayList<>();
     List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list = new ArrayList<>();
 
@@ -89,11 +90,11 @@ public class NewsFragment extends BaseFragment {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 //到达底部了
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount() && !isLoading) {
                     //到达底部之后如果footView的状态不是正在加载的状态,就将 他切换成正在加载的状态
                     currentPage++;
-
                     if (currentPage < allPages) {
+                        isLoading = true;
                         getData(currentPage);
                         mAdapter.changeState(1);
                     } else {
@@ -154,7 +155,7 @@ public class NewsFragment extends BaseFragment {
                 contentlist = yiYuanNewsBean.getShowapi_res_body().getPagebean().getContentlist();
                 list.addAll(contentlist);
                 mAdapter.setDataChange(list);
-
+                isLoading = false;
             }
         } catch (JSONException e) {
             e.printStackTrace();
