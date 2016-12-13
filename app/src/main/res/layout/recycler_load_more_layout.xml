@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:text="上拉加载更多"/>
+            android:text=""/>
 
         <TextView
             android:id="@+id/tv_line2"

@@ -12,7 +12,7 @@ import com.duanlian.daimeng.ui.view.many_searchview.controller.BaseController;
 
 
 /**
- * 这是一个神奇的类，今天心情郁闷
+ * 搜索的View
  */
 public class SearchView extends View {
     private Paint mPaint;

@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -70,10 +72,14 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
         if (holder instanceof MyViewHolder) {
             ((MyViewHolder) holder).tvTitle.setText(mList.get(position).getTitle());
             ((MyViewHolder) holder).tvSource.setText(mList.get(position).getSource());
             ((MyViewHolder) holder).tvDate.setText(mList.get(position).getPubDate());
+            //item的进场动画,有bug
+//            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_bottom_in);
+//            holder.itemView.startAnimation(animation);
             if (mList.get(position).getImageurls().size() != 0) {
                 ((MyViewHolder) holder).mImageView.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(mList.get(position).getImageurls().get(0).getUrl()).into(((MyViewHolder) holder).mImageView);
@@ -90,24 +96,32 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });
         } else if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
-            switch (footer_state) {//根据状态来让脚布局发生改变
+            if (position == 0) {//如果第一个就是脚布局,,那就让他隐藏
+                footViewHolder.mProgressBar.setVisibility(View.GONE);
+                footViewHolder.tv_line1.setVisibility(View.GONE);
+                footViewHolder.tv_line2.setVisibility(View.GONE);
+            } else {
+
+
+                switch (footer_state) {//根据状态来让脚布局发生改变
 //                case PULL_LOAD_MORE://上拉加载
 //                    footViewHolder.mProgressBar.setVisibility(View.GONE);
 //                    footViewHolder.tv_state.setText("上拉加载更多");
 //                    break;
-                case LOADING_MORE:
-                    footViewHolder.mProgressBar.setVisibility(View.VISIBLE);
-                    footViewHolder.tv_line1.setVisibility(View.GONE);
-                    footViewHolder.tv_line2.setVisibility(View.GONE);
-                    footViewHolder.tv_state.setText("正在加载...");
-                    break;
-                case NO_MORE:
-                    footViewHolder.mProgressBar.setVisibility(View.GONE);
-                    footViewHolder.tv_line1.setVisibility(View.VISIBLE);
-                    footViewHolder.tv_line2.setVisibility(View.VISIBLE);
-                    footViewHolder.tv_state.setText("我是有底线的");
-                    footViewHolder.tv_state.setTextColor(Color.parseColor("#ff00ff"));
-                    break;
+                    case LOADING_MORE:
+                        footViewHolder.mProgressBar.setVisibility(View.VISIBLE);
+                        footViewHolder.tv_line1.setVisibility(View.GONE);
+                        footViewHolder.tv_line2.setVisibility(View.GONE);
+                        footViewHolder.tv_state.setText("正在加载...");
+                        break;
+                    case NO_MORE:
+                        footViewHolder.mProgressBar.setVisibility(View.GONE);
+                        footViewHolder.tv_line1.setVisibility(View.VISIBLE);
+                        footViewHolder.tv_line2.setVisibility(View.VISIBLE);
+                        footViewHolder.tv_state.setText("我是有底线的");
+                        footViewHolder.tv_state.setTextColor(Color.parseColor("#ff00ff"));
+                        break;
+                }
             }
         }
     }

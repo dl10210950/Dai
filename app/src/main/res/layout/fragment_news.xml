@@ -2,14 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="#99cccccc"
-                android:orientation="vertical">
+    >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/news_recycler"
+    <com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_height="match_parent"
-        />
+        android:layout_marginRight="10dp"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/news_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/ic_arrow_upward"
+        app:layout_behavior=".widget.ScrollAwareFABBehavior"/>
 </RelativeLayout>
