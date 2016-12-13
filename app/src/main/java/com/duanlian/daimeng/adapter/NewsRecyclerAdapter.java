@@ -77,7 +77,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((MyViewHolder) holder).tvTitle.setText(mList.get(position).getTitle());
             ((MyViewHolder) holder).tvSource.setText(mList.get(position).getSource());
             ((MyViewHolder) holder).tvDate.setText(mList.get(position).getPubDate());
-            //item的进场动画,有bug
+            //item的进场动画,有bug,待解决
 //            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_bottom_in);
 //            holder.itemView.startAnimation(animation);
             if (mList.get(position).getImageurls().size() != 0) {
