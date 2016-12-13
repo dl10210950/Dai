@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/relative_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/news_recycler_item_selector"
+        android:clickable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="央媒谈校园欺凌：当母鸡不护雏你还当啥母鸡央媒谈校园欺凌：当母鸡不护雏你还当啥母鸡"/>
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll"
+            android:layout_marginTop="10dp"
+            android:text="国内新闻"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ll"
+            android:layout_marginTop="10dp"
+            android:text="2016-12-13 08:49:44"
+            android:textColor="@color/gray_button"
+            android:textSize="11sp"/>
+    </RelativeLayout>
+</LinearLayout>
