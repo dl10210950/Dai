@@ -1,5 +1,6 @@
 package com.duanlian.daimeng.ui.start;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
@@ -28,6 +29,9 @@ public class MainActivity extends BaseActivity implements ShineButton.OnCheckedC
 
     @Override
     public void initView() {
+        Intent intent = getIntent();
+        int intentType = intent.getIntExtra("intentType",1);
+
         music_btn = (ShineButton) findViewById(R.id.main_shine_btn_music);
         video_btn = (ShineButton) findViewById(R.id.main_shine_btn_video);
         book_btn = (ShineButton) findViewById(R.id.main_shine_btn_book);
@@ -40,8 +44,13 @@ public class MainActivity extends BaseActivity implements ShineButton.OnCheckedC
         video_btn.setOnCheckStateChangeListener(this);
         book_btn.setOnCheckStateChangeListener(this);
         news_btn.setOnCheckStateChangeListener(this);
-        changeState("music");
-        music_btn.setChecked(true);
+        if (intentType == 4) {
+            changeState("news");
+            news_btn.setChecked(true);
+        } else {
+            changeState("music");
+            music_btn.setChecked(true);
+        }
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -175,7 +174,6 @@ public class RefreshLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.e(TAG, "onLayout=======");
         final int width = getMeasuredWidth();
         final int height = getMeasuredHeight();
         if (getChildCount() == 0) {
@@ -230,7 +228,6 @@ public class RefreshLayout extends ViewGroup {
         final int actionMasked = ev.getActionMasked(); // support Multi-touch
         switch (actionMasked) {
             case MotionEvent.ACTION_DOWN:
-                Log.e(TAG, "ACTION_DOWN");
                 activePointerId = ev.getPointerId(0);
                 isAutoRefresh = false;
                 isTouch = true;
@@ -248,7 +245,7 @@ public class RefreshLayout extends ViewGroup {
 
             case MotionEvent.ACTION_MOVE:
                 if (activePointerId == INVALID_POINTER) {
-                    Log.e(TAG, "Got ACTION_MOVE event but don't have an active pointer id.");
+//                    Log.e(TAG, "Got ACTION_MOVE event but don't have an active pointer id.");
                     return super.dispatchTouchEvent(ev);
                 }
                 lastEvent = ev;
@@ -289,7 +286,7 @@ public class RefreshLayout extends ViewGroup {
             case MotionEvent.ACTION_POINTER_DOWN:
                 int pointerIndex = MotionEventCompat.getActionIndex(ev);
                 if (pointerIndex < 0) {
-                    Log.e(TAG, "Got ACTION_POINTER_DOWN event but have an invalid action index.");
+//                    Log.e(TAG, "Got ACTION_POINTER_DOWN event but have an invalid action index.");
                     return super.dispatchTouchEvent(ev);
                 }
                 lastMotionX = ev.getX(pointerIndex);

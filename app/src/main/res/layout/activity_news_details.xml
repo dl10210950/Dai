@@ -5,9 +5,12 @@
     android:id="@+id/activity_news_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.duanlian.daimeng.ui.news.NewsDetailsActivity">
+    <include layout="@layout/common_header"/>
 <WebView
     android:id="@+id/webview_news_details"
     android:layout_width="match_parent"
+    android:layout_below="@+id/common_title_bar"
     android:layout_height="match_parent"/>
 </RelativeLayout>

@@ -1,17 +1,18 @@
 package com.duanlian.daimeng.ui.news;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.duanlian.daimeng.R;
 import com.duanlian.daimeng.adapter.CommonFragPagerAdapter;
 import com.duanlian.daimeng.base.BaseFragment;
-import com.duanlian.daimeng.utils.CommonUtils;
-import com.duanlian.daimeng.utils.LogUtils;
+import com.duanlian.daimeng.database.DataBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,6 @@ import java.util.List;
 public class NewsFragment extends BaseFragment {
 
 
-    Toolbar mToolbar;
     TabLayout mTabs;
     ImageView mAddChannelIv;
     ViewPager mViewPager;
@@ -39,30 +39,41 @@ public class NewsFragment extends BaseFragment {
     @Override
     public View initView() {
         View view = View.inflate(getBaseActivity(), R.layout.fragment_news, null);
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mTabs = (TabLayout) view.findViewById(R.id.tabs);
         mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
+        mAddChannelIv = (ImageView) view.findViewById(R.id.add_channel_iv);
         framList = new ArrayList<>();
         titleList = new ArrayList<>();
+        titleList.clear();
         titleList.add("头条");
         titleList.add("国内");
         titleList.add("国际");
-        titleList.add("体育");
-        titleList.add("科技");
-        titleList.add("社会");
+        titleList.addAll(getData());
         for (int i = 0; i < titleList.size(); i++) {
             NewsListFragment listFragments = createListFragments(titleList.get(i));
             framList.add(listFragments);
         }
-        CommonUtils.dynamicSetTabLayoutMode(mTabs);
+//        CommonUtils.dynamicSetTabLayoutMode(mTabs);
+        if (titleList.size() <= 3) {
+            mTabs.setTabMode(TabLayout.MODE_FIXED);
+        } else {
+            mTabs.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }
         mTabs.setupWithViewPager(mViewPager);
         mPagerAdapter = new CommonFragPagerAdapter(getChildFragmentManager());
         mPagerAdapter.addTitles(titleList);
-        LogUtils.e(titleList.size()+"");
         mPagerAdapter.addPagers(framList);
         mViewPager.setAdapter(mPagerAdapter);
+        mAddChannelIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddChannelActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
+
     private NewsListFragment createListFragments(String channelName) {
         NewsListFragment fragment = new NewsListFragment();
         Bundle bundle = new Bundle();
@@ -71,4 +82,21 @@ public class NewsFragment extends BaseFragment {
         return fragment;
     }
 
+
+    /**
+     * 通过查找数据库,拿到里面的数据
+     */
+    private List<String> getData() {
+        List<String> list = new ArrayList<>();
+        Cursor query = DataBase.getInstances(getBaseActivity()).query();
+        if (query.moveToFirst()) {
+            do {
+                String channel = query.getString(query.getColumnIndex("channel"));
+                list.add(channel);
+            } while (query.moveToNext());
+        }
+        //关闭查询游标
+        query.close();
+        return list;
+    }
 }

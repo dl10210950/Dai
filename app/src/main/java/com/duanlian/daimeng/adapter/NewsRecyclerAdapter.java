@@ -96,7 +96,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });
         } else if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
-            if (position == 0) {//如果第一个就是脚布局,,那就让他隐藏
+            if (position <10) {//如果第一个就是脚布局,,那就让他隐藏
                 footViewHolder.mProgressBar.setVisibility(View.GONE);
                 footViewHolder.tv_line1.setVisibility(View.GONE);
                 footViewHolder.tv_line2.setVisibility(View.GONE);

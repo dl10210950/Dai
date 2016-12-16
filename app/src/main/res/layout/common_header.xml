@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/TitleBar"
-    android:baselineAligned="false"
-    android:focusable="true" >
+                style="@style/TitleBar"
+                android:id="@+id/common_title_bar"
+                android:baselineAligned="false"
+                android:focusable="true">
 
-    <LinearLayout
-        android:id="@+id/header_layout_leftview_container"
+    <ImageView
+        android:id="@+id/header_layout_leftview"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:gravity="center_vertical|left"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
-        android:paddingLeft="10dp" >
-    </LinearLayout>
+        android:background="@drawable/icon_back_selector"
+        android:layout_marginLeft="10dp">
+    </ImageView>
 
     <LinearLayout
         android:id="@+id/header_title"
@@ -21,13 +23,14 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:orientation="horizontal" >
-
+        android:orientation="horizontal">
+        <!--标题-->
         <TextView
             android:id="@+id/header_htv_subtitle"
             style="@style/TitleBarText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -37,8 +40,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:visibility="gone"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:visibility="gone">
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +51,7 @@
         android:layout_alignParentRight="true"
         android:gravity="center_vertical|right"
         android:orientation="horizontal"
-        android:paddingRight="10dp" >
+        android:paddingRight="10dp">
     </LinearLayout>
 
 </RelativeLayout>

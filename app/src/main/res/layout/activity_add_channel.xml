@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_channel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.duanlian.daimeng.ui.news.AddChannelActivity">
+
+    <include layout="@layout/common_header"/>
+
+    <RelativeLayout
+        android:id="@+id/relative_top"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/common_title_bar"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/add_channel_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:text="选择频道"/>
+
+        <TextView
+            android:id="@+id/tv_invert"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:onClick="addChannel"
+            android:text="反选"
+            android:textColor="@color/black_444444"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/tv_invert"
+            android:background="@color/black_444444"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_check_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/tv_line"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:onClick="addChannel"
+            android:text="全选"
+            android:textColor="@color/black_444444"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/relative_top"
+        android:background="#f0f0f0"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="true"
+            android:background="@drawable/channel_grid_shap_one"
+            android:text="头条"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/gray_button"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:singleLine="true"
+            android:background="@drawable/channel_grid_shap_one"
+            android:text="国内"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/gray_button"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tv_league"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/channel_fixation_grid_shap_one"
+            android:singleLine="true"
+            android:text="国际"
+            android:textColor="@color/gray_button"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gv_channel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom"
+        android:layout_below="@+id/ll"
+        android:background="#f0f0f0"
+        android:numColumns="3"
+        android:paddingTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbars="none"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <Button
+            android:id="@+id/btn_sure"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_login_shape"
+            android:onClick="addChannel"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+</RelativeLayout>

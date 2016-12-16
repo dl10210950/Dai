@@ -5,7 +5,7 @@
                 android:background="@color/colorPrimary"
                 tools:context="com.duanlian.daimeng.ui.news.NewsListFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +17,6 @@
             android:id="@+id/recycler_news_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout>
 
 </RelativeLayout>

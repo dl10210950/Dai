@@ -1,5 +1,6 @@
 package com.duanlian.daimeng.ui.news;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +13,9 @@ import com.duanlian.daimeng.adapter.NewsRecyclerAdapter;
 import com.duanlian.daimeng.base.BaseFragment;
 import com.duanlian.daimeng.bean.YiYuanNews;
 import com.duanlian.daimeng.constant.Api;
+import com.duanlian.daimeng.ui.view.pull_refresh.RefreshHeaderOne;
+import com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout;
+import com.duanlian.daimeng.utils.AnimationDialog;
 import com.duanlian.daimeng.utils.LogUtils;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -28,11 +32,14 @@ import okhttp3.Call;
 import static com.duanlian.daimeng.constant.Api.YIYUAN_APPID;
 import static com.duanlian.daimeng.constant.Api.YIYUAN_SECRET;
 
+/**
+ * 新闻列表fragment,全部公用这个fragment
+ */
 public class NewsListFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private NewsRecyclerAdapter mAdapter;
-    private SwipeRefreshLayout mRefreshLayout;
+    private RefreshLayout mRefreshLayout;
     String title;
     private int allPages;
     int lastVisibleItem;
@@ -41,6 +48,7 @@ public class NewsListFragment extends BaseFragment {
     List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist = new ArrayList<>();
     List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list = new ArrayList<>();
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,19 +56,20 @@ public class NewsListFragment extends BaseFragment {
             title = getArguments().getString("channelName");
             LogUtils.e(title);
         }
+
     }
 
     @Override
     public View initView() {
         View view = View.inflate(getBaseActivity(), R.layout.fragment_news_list, null);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_news_list);
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
+        mRefreshLayout = (RefreshLayout) view.findViewById(R.id.refreshLayout);
         mLinearLayoutManager = new LinearLayoutManager(getBaseActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mAdapter = new NewsRecyclerAdapter(getBaseActivity(), contentlist);
         mRecyclerView.setAdapter(mAdapter);
-        getData(1, title);
         setRefreshLayout();
+        mRefreshLayout.autoRefresh();//开启刚进去就自动刷新
         return view;
     }
 
@@ -68,15 +77,15 @@ public class NewsListFragment extends BaseFragment {
      * 设置自定义刷新布局的
      */
     private void setRefreshLayout() {
-        mRefreshLayout.setColorSchemeColors(getActivity().getResources().getIntArray(R.array.gplus_colors));
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        RefreshHeaderOne headerOne = new RefreshHeaderOne(getBaseActivity());
+        mRefreshLayout.setRefreshHeader(headerOne);
+        mRefreshLayout.setRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getData(1, title);
+                list.clear();
+                getData(1,title);
             }
         });
-
-
     }
 
     @Override
@@ -116,7 +125,6 @@ public class NewsListFragment extends BaseFragment {
     private void getData(int page, String title) {
         String url = Api.YIYUAN_BASE_URL + "109-35?channelId=&channelName=&maxResult=20&needAllList=0&needContent=0&needHtml=0&page="
                 + page + "&showapi_appid=" + YIYUAN_APPID + "&title=" + title + "&showapi_sign=" + YIYUAN_SECRET;
-        LogUtils.e(url);
         OkHttpUtils.get()
                 .url(url)
                 .build()
@@ -124,14 +132,14 @@ public class NewsListFragment extends BaseFragment {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         LogUtils.e(getBaseActivity(), e.toString());
-                        mRefreshLayout.setRefreshing(false);
+                        mRefreshLayout.refreshComplete();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        LogUtils.e(getBaseActivity(), response.toString());
+//                        LogUtils.e(getBaseActivity(), response.toString());
                         doResult(response);
-                        mRefreshLayout.setRefreshing(false);
+                        mRefreshLayout.refreshComplete();
                     }
                 });
     }
