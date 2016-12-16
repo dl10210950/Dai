@@ -1,4 +1,4 @@
-package com.duanlian.daimeng.ui.activity;
+package com.duanlian.daimeng.ui.start;
 
 import android.graphics.Color;
 import android.view.View;
@@ -7,10 +7,10 @@ import android.widget.TextView;
 import com.duanlian.daimeng.R;
 import com.duanlian.daimeng.base.BaseActivity;
 import com.duanlian.daimeng.base.BaseFragment;
-import com.duanlian.daimeng.ui.fragment.BookFragment;
-import com.duanlian.daimeng.ui.fragment.MusicFragment;
-import com.duanlian.daimeng.ui.fragment.NewsFragment;
-import com.duanlian.daimeng.ui.fragment.VideoFragment;
+import com.duanlian.daimeng.ui.book.BookFragment;
+import com.duanlian.daimeng.ui.music.MusicFragment;
+import com.duanlian.daimeng.ui.news.NewsFragment;
+import com.duanlian.daimeng.ui.video.VideoFragment;
 import com.duanlian.daimeng.ui.view.shinebutton.ShineButton;
 
 /**

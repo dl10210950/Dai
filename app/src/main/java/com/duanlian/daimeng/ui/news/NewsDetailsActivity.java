@@ -1,4 +1,4 @@
-package com.duanlian.daimeng.ui.activity;
+package com.duanlian.daimeng.ui.news;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

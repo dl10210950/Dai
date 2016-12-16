@@ -33,6 +33,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black_444444"
+                android:textSize="16sp"
                 android:text="央媒谈校园欺凌：当母鸡不护雏你还当啥母鸡央媒谈校园欺凌：当母鸡不护雏你还当啥母鸡"/>
 
             <ImageView
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll"
             android:layout_marginTop="10dp"
+            android:textColor="@color/dimgray"
             android:text="国内新闻"/>
 
         <TextView

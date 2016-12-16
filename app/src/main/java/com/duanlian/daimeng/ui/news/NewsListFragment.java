@@ -1,6 +1,8 @@
-package com.duanlian.daimeng.ui.fragment;
+package com.duanlian.daimeng.ui.news;
 
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,9 +10,8 @@ import android.view.View;
 import com.duanlian.daimeng.R;
 import com.duanlian.daimeng.adapter.NewsRecyclerAdapter;
 import com.duanlian.daimeng.base.BaseFragment;
-import com.duanlian.daimeng.bean.YiYuanNewsBean;
-import com.duanlian.daimeng.ui.view.pull_refresh.RefreshHeaderOne;
-import com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout;
+import com.duanlian.daimeng.bean.YiYuanNews;
+import com.duanlian.daimeng.constant.Api;
 import com.duanlian.daimeng.utils.LogUtils;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -24,41 +25,41 @@ import java.util.List;
 
 import okhttp3.Call;
 
-import static com.duanlian.daimeng.constant.Api.baiduApiKey;
-import static com.duanlian.daimeng.constant.Api.yiYuanNews;
+import static com.duanlian.daimeng.constant.Api.YIYUAN_APPID;
+import static com.duanlian.daimeng.constant.Api.YIYUAN_SECRET;
 
-/**
- * music页面
- */
-
-public class NewsFragment extends BaseFragment {
+public class NewsListFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private NewsRecyclerAdapter mAdapter;
-    private RefreshLayout mRefreshLayout;
-    private FloatingActionButton mFloatingActionButton;//悬浮按钮
-    int allPages;//新闻里面的所有页数
+    private SwipeRefreshLayout mRefreshLayout;
+    String title;
+    private int allPages;
     int lastVisibleItem;
     int currentPage = 1;
     private boolean isLoading;
-    List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist = new ArrayList<>();
-    List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list = new ArrayList<>();
+    List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist = new ArrayList<>();
+    List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list = new ArrayList<>();
 
-    public static BaseFragment newInstance() {
-        NewsFragment fragment = new NewsFragment();
-        return fragment;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {//拿到传递过来的channelName
+            title = getArguments().getString("channelName");
+            LogUtils.e(title);
+        }
     }
 
     @Override
     public View initView() {
-        View view = View.inflate(getBaseActivity(), R.layout.fragment_news, null);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.news_recycler);
-        mRefreshLayout = (RefreshLayout) view.findViewById(R.id.refreshLayout);
-        mFloatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        View view = View.inflate(getBaseActivity(), R.layout.fragment_news_list, null);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_news_list);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refreshLayout);
         mLinearLayoutManager = new LinearLayoutManager(getBaseActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mAdapter = new NewsRecyclerAdapter(getBaseActivity(), contentlist);
         mRecyclerView.setAdapter(mAdapter);
+        getData(1, title);
         setRefreshLayout();
         return view;
     }
@@ -67,20 +68,15 @@ public class NewsFragment extends BaseFragment {
      * 设置自定义刷新布局的
      */
     private void setRefreshLayout() {
-        RefreshHeaderOne headerOne = new RefreshHeaderOne(getBaseActivity());
-        mRefreshLayout.setRefreshHeader(headerOne);//设置刷新的头布局
-        mRefreshLayout.autoRefresh();//开启刚进去就自动刷新
-        if (mRefreshLayout != null) {
-            // 刷新状态的回调
-            mRefreshLayout.setRefreshListener(new RefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    list.clear();
-                    getData(1);
-                }
-            });
+        mRefreshLayout.setColorSchemeColors(getActivity().getResources().getIntArray(R.array.gplus_colors));
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData(1, title);
+            }
+        });
 
-        }
+
     }
 
     @Override
@@ -95,7 +91,7 @@ public class NewsFragment extends BaseFragment {
                     currentPage++;
                     if (currentPage < allPages) {
                         isLoading = true;
-                        getData(currentPage);
+                        getData(currentPage, title);
                         mAdapter.changeState(1);
                     } else {
                         mAdapter.changeState(2);
@@ -107,36 +103,35 @@ public class NewsFragment extends BaseFragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
-                mFloatingActionButton.setVisibility(View.VISIBLE);
-            }
-        });
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mRecyclerView.smoothScrollToPosition(0);
             }
         });
     }
 
-    private void getData(int page) {
-        String url = yiYuanNews + "?page=" + page;
+    /**
+     * 根据不同的频道请求不同的数据
+     *
+     * @param page
+     * @param title
+     */
+    private void getData(int page, String title) {
+        String url = Api.YIYUAN_BASE_URL + "109-35?channelId=&channelName=&maxResult=20&needAllList=0&needContent=0&needHtml=0&page="
+                + page + "&showapi_appid=" + YIYUAN_APPID + "&title=" + title + "&showapi_sign=" + YIYUAN_SECRET;
         LogUtils.e(url);
         OkHttpUtils.get()
                 .url(url)
-                .addHeader("apikey", baiduApiKey)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         LogUtils.e(getBaseActivity(), e.toString());
-                        mRefreshLayout.refreshComplete();
+                        mRefreshLayout.setRefreshing(false);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        mRefreshLayout.refreshComplete();
                         LogUtils.e(getBaseActivity(), response.toString());
                         doResult(response);
+                        mRefreshLayout.setRefreshing(false);
                     }
                 });
     }
@@ -150,9 +145,9 @@ public class NewsFragment extends BaseFragment {
             int showapi_res_code = object.optInt("showapi_res_code");
             if (showapi_res_code == 0) {
                 Gson gson = new Gson();
-                YiYuanNewsBean yiYuanNewsBean = gson.fromJson(response, YiYuanNewsBean.class);
-                allPages = yiYuanNewsBean.getShowapi_res_body().getPagebean().getAllPages();
-                contentlist = yiYuanNewsBean.getShowapi_res_body().getPagebean().getContentlist();
+                YiYuanNews yiYuanNews = gson.fromJson(response, YiYuanNews.class);
+                allPages = yiYuanNews.getShowapi_res_body().getPagebean().getAllPages();
+                contentlist = yiYuanNews.getShowapi_res_body().getPagebean().getContentlist();
                 list.addAll(contentlist);
                 mAdapter.setDataChange(list);
                 isLoading = false;

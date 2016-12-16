@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.duanlian.daimeng.R;
-import com.duanlian.daimeng.bean.YiYuanNewsBean;
-import com.duanlian.daimeng.ui.activity.NewsDetailsActivity;
+import com.duanlian.daimeng.bean.YiYuanNews;
+import com.duanlian.daimeng.ui.news.NewsDetailsActivity;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> mList;
+    private List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> mList;
     //普通布局的type
     static final int TYPE_ITEM = 0;
     //脚布局
@@ -41,7 +41,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     int footer_state = 1;
 
 
-    public NewsRecyclerAdapter(Context context, List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist) {
+    public NewsRecyclerAdapter(Context context, List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist) {
         this.mContext = context;
         this.mList = contentlist;
     }
@@ -177,7 +177,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         notifyDataSetChanged();
     }
 
-    public void setDataChange(List<YiYuanNewsBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list) {
+    public void setDataChange(List<YiYuanNews.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list) {
         this.mList = list;
         notifyDataSetChanged();
 

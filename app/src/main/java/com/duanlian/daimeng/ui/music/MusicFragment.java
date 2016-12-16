@@ -1,11 +1,10 @@
-package com.duanlian.daimeng.ui.fragment;
+package com.duanlian.daimeng.ui.music;
 
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,16 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.duanlian.daimeng.R;
-import com.duanlian.daimeng.adapter.MusicFragPagerAdapter;
+import com.duanlian.daimeng.adapter.CommonFragPagerAdapter;
 import com.duanlian.daimeng.base.BaseFragment;
-import com.duanlian.daimeng.ui.fragment.music.LocalMusicFragment;
-import com.duanlian.daimeng.ui.fragment.music.NetMusicFragment;
 import com.duanlian.daimeng.ui.view.AutoViewPager;
 import com.duanlian.daimeng.ui.view.CircleImageView;
 import com.duanlian.daimeng.ui.view.IosBottomDialog;
 import com.duanlian.daimeng.ui.view.many_searchview.SearchView;
 import com.duanlian.daimeng.ui.view.many_searchview.controller.ChangeArrowController;
-import com.duanlian.daimeng.ui.view.many_searchview.controller.DotGoPathController;
 import com.duanlian.daimeng.ui.view.stickylayout.StickyNavLayout;
 import com.duanlian.daimeng.utils.CommonUtils;
 import com.nineoldandroids.view.ViewHelper;
@@ -39,7 +35,7 @@ public class MusicFragment extends BaseFragment {
     private TabLayout mTab;
     private LinearLayout mLinearLayout;
     private StickyNavLayout stickyNavLayout;
-    private MusicFragPagerAdapter mPagerAdapter;
+    private CommonFragPagerAdapter mPagerAdapter;
     private List<BaseFragment> mFragList;
     private List<String> titleList;
     private RelativeLayout mRelative;
@@ -77,15 +73,15 @@ public class MusicFragment extends BaseFragment {
         //设置tab的模式
         mTab.setTabMode(TabLayout.MODE_FIXED);
         mTab.setupWithViewPager(mViewPager);
-        mPagerAdapter = new MusicFragPagerAdapter(getChildFragmentManager());
+        mPagerAdapter = new CommonFragPagerAdapter(getChildFragmentManager());
         mPagerAdapter.setTitles(titleList);
         mPagerAdapter.setPagers(mFragList);
         mViewPager.setAdapter(mPagerAdapter);
         //给轮播图添加图片
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager,getBaseActivity()));
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager1,getBaseActivity()));
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.veiwpager2,getBaseActivity()));
-        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager3,getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager, getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager1, getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.veiwpager2, getBaseActivity()));
+        mAutoViewPager.addContent(CommonUtils.getImageView(R.mipmap.viewpager3, getBaseActivity()));
         mAutoViewPager.startScroll();
         //设置顶部导航栏隐藏
         ViewHelper.setAlpha(mRelative, 0f);
@@ -170,7 +166,5 @@ public class MusicFragment extends BaseFragment {
     @Override
     public void initData() {
     }
-
-
 
 }

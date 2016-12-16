@@ -7,9 +7,9 @@ import com.duanlian.daimeng.base.CustomPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicFragPagerAdapter extends CustomPagerAdapter {
+public class CommonFragPagerAdapter extends CustomPagerAdapter {
 
-    public MusicFragPagerAdapter(FragmentManager fm) {
+    public CommonFragPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

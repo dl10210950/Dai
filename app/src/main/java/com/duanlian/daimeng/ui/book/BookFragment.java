@@ -1,4 +1,4 @@
-package com.duanlian.daimeng.ui.fragment;
+package com.duanlian.daimeng.ui.book;
 
 import android.view.View;
 
@@ -9,14 +9,15 @@ import com.duanlian.daimeng.base.BaseFragment;
  * music页面
  */
 
-public class VideoFragment extends BaseFragment{
+public class BookFragment extends BaseFragment {
     public static BaseFragment newInstance() {
-        VideoFragment fragment = new VideoFragment();
+        BookFragment fragment = new BookFragment();
         return fragment;
     }
+
     @Override
     public View initView() {
-        View view = View.inflate(getBaseActivity(), R.layout.fragment_video, null);
+        View view = View.inflate(getBaseActivity(), R.layout.fragment_book, null);
         return view;
     }
 }
