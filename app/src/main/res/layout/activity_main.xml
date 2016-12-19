@@ -49,6 +49,27 @@
         </RelativeLayout>
 
         <RelativeLayout
+            style="@style/MainBottomRelativeLayout"
+            >
+
+            <com.duanlian.daimeng.ui.view.shinebutton.ShineButton
+                android:id="@+id/main_shine_btn_joke"
+                style="@style/MainShineButton"
+                app:big_shine_color="#FF0066"
+                app:btn_color="#868686"
+                app:btn_fill_color="#FF0066"
+                app:enable_flashing="true"
+                app:shine_size="30dp"
+                app:siShape="@mipmap/main_bottom_joke"/>
+
+            <TextView
+                android:id="@+id/main_joke_tv"
+                style="@style/MainTextView"
+                android:layout_below="@+id/main_shine_btn_joke"
+                android:text="乐 呵"
+                />
+        </RelativeLayout>
+        <RelativeLayout
             android:id="@+id/main_relative_video"
             style="@style/MainBottomRelativeLayout">
 

@@ -29,7 +29,7 @@
     </style>
 
     <style name="MainShineButton">
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:layout_centerHorizontal">true</item>
@@ -39,14 +39,15 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/gray_868686</item>
     </style>
 
     <style name="MainBottomRelativeLayout">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingBottom">2dp</item>
     </style>
 
     <style name="ios_bottom_dialog" parent="android:style/Theme.Dialog">
