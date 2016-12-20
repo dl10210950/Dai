@@ -1,9 +1,7 @@
 package com.duanlian.daimeng.ui.news;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,7 +13,6 @@ import com.duanlian.daimeng.bean.YiYuanNews;
 import com.duanlian.daimeng.constant.Api;
 import com.duanlian.daimeng.ui.view.pull_refresh.RefreshHeaderOne;
 import com.duanlian.daimeng.ui.view.pull_refresh.RefreshLayout;
-import com.duanlian.daimeng.utils.AnimationDialog;
 import com.duanlian.daimeng.utils.LogUtils;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;

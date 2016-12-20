@@ -58,7 +58,7 @@ public class LogUtils {
      */
     public static void e(String msg) {
         if (mDebug) {
-            Log.e("Log-----error", msg);
+            Log.e("duanyimeng", msg);
         }
     }
 }

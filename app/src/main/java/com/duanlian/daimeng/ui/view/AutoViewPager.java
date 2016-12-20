@@ -64,14 +64,19 @@ public class AutoViewPager extends RelativeLayout implements ViewPager.OnPageCha
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            int position_in_data = position % views.size();
-            View image = views.get(position_in_data);
-            if (image.getParent() != null) {
-                ViewGroup viewGroup = (ViewGroup) image.getParent();
-                viewGroup.removeView(image);
+            if (views.size() != 0) {
+                int position_in_data = position % views.size();
+                View image = views.get(position_in_data);
+                if (image.getParent() != null) {
+                    ViewGroup viewGroup = (ViewGroup) image.getParent();
+                    viewGroup.removeView(image);
+                }
+                container.addView(image);
+                return image;
+            } else {
+                return null;
             }
-            container.addView(image);
-            return image;
+
         }
     };
 

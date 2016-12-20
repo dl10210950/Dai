@@ -101,8 +101,6 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 footViewHolder.tv_line1.setVisibility(View.GONE);
                 footViewHolder.tv_line2.setVisibility(View.GONE);
             } else {
-
-
                 switch (footer_state) {//根据状态来让脚布局发生改变
 //                case PULL_LOAD_MORE://上拉加载
 //                    footViewHolder.mProgressBar.setVisibility(View.GONE);

@@ -3,7 +3,6 @@ package com.duanlian.daimeng.ui.music;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -45,7 +44,6 @@ public class MusicFragment extends BaseFragment {
     private ImageView hint_img;
     private EditText mEditText;
     private SearchView mSearchView;
-    private SwipeRefreshLayout swipe;
 
     public static BaseFragment newInstance() {
         MusicFragment fragment = new MusicFragment();
@@ -88,18 +86,6 @@ public class MusicFragment extends BaseFragment {
         //设置顶部导航栏隐藏
         ViewHelper.setAlpha(mRelative, 0f);
         setViewListener();
-        swipe = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
-        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipe.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipe.setRefreshing(false);
-                    }
-                }, 3000);
-            }
-        });
         return view;
     }
 

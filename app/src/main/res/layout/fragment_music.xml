@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:stick="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe"
@@ -62,4 +62,4 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/head"/>
     </RelativeLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

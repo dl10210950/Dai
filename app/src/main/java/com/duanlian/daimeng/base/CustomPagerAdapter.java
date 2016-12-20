@@ -34,7 +34,7 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
      */
     public void addPager(BaseFragment fragment) {
         if (mFragments == null) {
-            ArrayList<BaseFragment> fragments = new ArrayList<BaseFragment>();
+            ArrayList<BaseFragment> fragments = new ArrayList<>();
             fragments.add(fragment);
             setPagers(fragments);
         } else {
@@ -71,7 +71,7 @@ public class CustomPagerAdapter extends FragmentPagerAdapter {
      */
     public void addTitle(String title) {
         if (mTitles == null) {
-            ArrayList<String> titles = new ArrayList<String>();
+            ArrayList<String> titles = new ArrayList<>();
             titles.add(title);
             setTitles(titles);
         } else {

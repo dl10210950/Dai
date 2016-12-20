@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.duanlian.daimeng.R;
 import com.duanlian.daimeng.base.BaseActivity;
-import com.duanlian.daimeng.utils.AnimationDialog;
+import com.duanlian.daimeng.utils.DialogFireworks;
 import com.duanlian.daimeng.utils.LogUtils;
 
 public class NewsDetailsActivity extends BaseActivity {
@@ -36,7 +36,7 @@ public class NewsDetailsActivity extends BaseActivity {
             }
         });
         //烟花dialog
-        dialog = AnimationDialog.createLoadingDialog(this, "客官,马上就好....");
+        dialog = DialogFireworks.createLoadingDialog(this, "客官,马上就好....");
         dialog.show();
         String url = getIntent().getStringExtra("url");
         webView = (WebView) findViewById(R.id.webview_news_details);
